@@ -1,12 +1,14 @@
 import { Suspense, lazy } from 'react';
-import { useRoutes, Route, Navigate } from 'react-router-dom';
+import { useRoutes, Navigate,useLocation } from 'react-router-dom';
+import LoadingScreen from '../components/LoadingScreen';
+import Layout from '../layout';
 
 const Loadable = (Component) => (props) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { pathname } = useLocation();
 
   return (
-    <Suspense fallback={<LoadingScreen isDashboard={pathname.includes('/dashboard')} />}>
+    <Suspense fallback={<LoadingScreen isShow={pathname.includes('/dashboard')} />}>
       <Component {...props} />
     </Suspense>
   );
